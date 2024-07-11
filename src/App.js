@@ -69,27 +69,23 @@ function Board({ xIsNext, squares, onPlay }) {
     status = "Next player is : " + (xIsNext ? "X" : "O");
   }
 
-  const boardArray = [];
+  const rows = [];
 
-  Array(3).fill(null).map((rowValue, rowIndex) => {
-    Array(3).fill(null).map(columnValue, columnIndex)
-  });
-
-  // for (let i = 0; i < 3; i++) {
-  //   let squareColumnElements = [];
-  //   for (let j = 0; j < 3; j++) {
-  //     console.log(i * 3 + j);
-  //     squareColumnElements.push(<Square key={i * 3 + j} value={squares[i * 3 + j]} onSquareClick={() => handleClick(i * 3 + j)} />);
-  //   }
-  //   squareElements.push(<div key={i} className="row justify-content-center ">{squareColumnElements}</div>);
-  // }
+  for (let i = 0; i < 3; i++) {
+    let column = [];
+    for (let j = 0; j < 3; j++) {
+      console.log(i * 3 + j);
+      column.push(<Square key={i * 3 + j} value={squares[i * 3 + j]} onSquareClick={() => handleClick(i * 3 + j)} />);
+    }
+    rows.push(<div key={i} className="row justify-content-center ">{column}</div>);
+  }
 
 
 
   return (
     <div className="container mx-auto">
       <h1 className="row justify-content-center ">{status}</h1>
-      {squareElements}
+      {rows}
     </div>
   );
 }
